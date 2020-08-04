@@ -1,0 +1,6 @@
+  private _startDate: Date;
+  private _startHour: number;
+  private _startMinute: number;
+  private _endDate: Date;
+  private _endHour: number;
+  private _endMinute: number;

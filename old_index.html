@@ -1,0 +1,84 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>Countdown Minimal</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="./dist/bundle.dev.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/mint-choc/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div id="content">
+    <div class="container">
+      <div class="left">
+        <div id="title"></div>
+        <div>Start Date:<span id="startDate"></span></div>
+        <div>End Date:<span id="endDate"></span></div>
+        <div>Hours Passed:<span id="hoursPassed"></span></div>
+        <div>Hours Remaining:<span id="hoursRemaining"></span></div>
+        <button onclick="showDialog()">New Countdown</button>
+      </div>
+      <div class="right">
+        <canvas></canvas>
+      </div>
+    </div>
+  </div>
+   
+  <div id="dialog" title="Create Countdown">
+    <form>
+      <fieldset>
+        <label for="titleInput">Countdown Title</label>
+        <input type="text" name="titleInput" id="titleInput" value="My Countdown" class="text ui-widget-content ui-corner-all" />
+        <label for="startDateInput">Start Date</label>
+        <input type="text" name="startDateInput" id="startDateInput" class="text ui-widget-content ui-corner-all" />
+        <label for="endDateInput">Start Date</label>
+        <input type="text" name="endDateInput" id="endDateInput" class="text ui-widget-content ui-corner-all" />
+   
+        <!-- Allow form submission with keyboard without duplicating the dialog button -->
+        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+      </fieldset>
+    </form>
+  </div>
+  <script type="text/javascript">
+  var coundDown = null;
+  var dialog = $( "#dialog" ).dialog({
+      autoOpen: false,
+      height: 400,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Create New Countdown": createCountdown,
+        Cancel: function() {
+          dialog.dialog( "close" );
+        }
+      },
+      close: function() {
+        // form[ 0 ].reset(); 
+        // allFields.removeClass( "ui-state-error" );
+      }
+  });
+
+  $( function() {
+    $( "#startDateInput" ).datepicker();
+  } );
+  $( function() {
+    $( "#endDateInput" ).datepicker();
+  } );
+
+  function showDialog() {
+    
+    dialog.dialog("open");
+  }
+  function createCountdown() {
+    console.log("created.");
+  }
+
+  function updateText() {
+    if (coundDown) {
+      $( "#startDate" ).text(countDown.startDate);
+    }
+  }
+  </script>
+</body>
+</html>
